@@ -11,6 +11,8 @@ The whole line starts from a single SSH command; no UART cables remain.
 
 [한국어](README.ko.md)
 
+![The assembled system — conveyor, rotation plate, control tower and status LCD](docs/images/integrated_system.png)
+
 ---
 
 ## Contents
@@ -34,6 +36,8 @@ Every hop uses a different mechanism, and making them mesh was most of the work.
 
 ## System
 
+![End-to-end flow — the data path across the recognition, control and actuation boards](docs/images/system_flow.png)
+
 ```
  camera --> [ AI-G ]  --Ethernet TCP-->  [ D3-G A72 ]
             YOLOv8n on                    classification gating, actuation timing
@@ -56,6 +60,14 @@ Every hop uses a different mechanism, and making them mesh was most of the work.
 With no Python on AI-G, result transmission is written in `sh` + `awk` + `nc`. The two D3-G
 cores talk over `/dev/tcc_ipc_micom`, and from there to the actuation board it is CAN — one
 byte for the servo angle, two for the LEDs, four for the LCD counter.
+
+### Recognition model
+
+![Training results — loss, precision, recall and mAP curves with the class distribution](docs/images/model_training.png)
+
+YOLOv8n (about 3M parameters) was trained on a strawberry dataset we photographed and labelled
+ourselves, reaching 0.99 validation mAP50. The lightweight model was chosen because the board
+has 2 GB of memory. Dataset construction, training and NPU conversion were my teammate's work.
 
 ### Housing
 
@@ -175,6 +187,7 @@ BOARD_CODE/vcp-g/
 docs/
   final_presentation_ko.pdf  final presentation
   final_report_ko.pdf        final report
+  images/                    diagrams and operation screens taken from the final report
 ```
 
 ## Results
@@ -185,6 +198,20 @@ docs/
 | Communication | Ethernet TCP → IPC shared memory → CAN bus |
 | Reliability | **exactly one actuation per strawberry** at 2 fps with frequent misdetections |
 | Operation | whole line starts and stops from one SSH command; no UART cables |
+
+### Operation
+
+The result is shown immediately on three LEDs and an LCD — red for rotten, yellow for unripe,
+green for fresh, all going dark after about a second. The LCD carries the idle state and the
+running totals (all, fresh, rotten, unripe).
+
+![Three-colour LED indication and the LCD idle and totals screens](docs/images/led_lcd.png)
+
+The run log after starting with a single command: the tuning constants, the fixed IP, the
+automatic SSH start on AI-G, the TCP connection, and then detections with coordinates and
+confidence.
+
+![Run log in the D3-G SSH session](docs/images/run_log.png)
 
 ## Build and run
 

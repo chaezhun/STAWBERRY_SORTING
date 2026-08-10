@@ -9,6 +9,8 @@
 
 [English](README.md)
 
+![조립된 전체 시스템 — 컨베이어, 회전판, 컨트롤 타워, 상태 표시 LCD](docs/images/integrated_system.png)
+
 ---
 
 ## 목차
@@ -32,6 +34,8 @@ AI-G는 최소 Yocto 이미지라 Python이 아예 없다. D3-G는 코어 두 �
 
 ## 시스템 구성
 
+![전체 처리 흐름 — 인식·제어·구동 보드 간 데이터 경로](docs/images/system_flow.png)
+
 ```
  카메라 --> [ AI-G ]  --이더넷 TCP-->  [ D3-G A72 ]
             NPU 위의                    분류 판단, 동작 시점 결정
@@ -54,6 +58,14 @@ AI-G는 최소 Yocto 이미지라 Python이 아예 없다. D3-G는 코어 두 �
 AI-G에는 Python이 없어 결과 전송을 `sh` + `awk` + `nc`로 짰다. D3-G 두 코어 사이는
 `/dev/tcc_ipc_micom`, 거기서 구동 보드까지는 CAN이고, 서보는 각도 1바이트, LED는 2바이트,
 LCD 카운터는 4바이트로 포맷을 정했다.
+
+### 인식 모델
+
+![학습 결과 — 손실·정밀도·재현율·mAP 곡선과 클래스 분포](docs/images/model_training.png)
+
+직접 촬영·라벨링한 딸기 데이터셋으로 YOLOv8n(약 3M 파라미터)을 학습해 검증 mAP50 0.99를
+얻었다. 보드 메모리 2 GB 제약 때문에 경량 모델을 골랐다. 데이터셋 구축과 학습, NPU 변환·배포는
+팀원이 맡았다.
 
 ### 하우징
 
@@ -164,6 +176,7 @@ BOARD_CODE/vcp-g/
 docs/
   final_presentation_ko.pdf  최종 발표자료
   final_report_ko.pdf        최종 보고서
+  images/                    최종 보고서에서 뽑은 구성도·동작 화면
 ```
 
 ## 결과
@@ -174,6 +187,18 @@ docs/
 | 통신 | 이더넷 TCP → IPC 공유메모리 → CAN 버스 |
 | 신뢰성 | 초당 2프레임·잦은 오검출 조건에서 **딸기 1개당 정확히 1회 동작** |
 | 운영 | SSH 한 줄로 전체 라인 기동·종료. UART 케이블 없음 |
+
+### 동작 화면
+
+분류 결과는 LED 3색과 LCD로 즉시 표시된다. 썩음은 빨강, 덜익음은 노랑, 신선은 초록이고 약 1초
+뒤 소등된다. LCD에는 대기 상태와 누적 통계(전체·신선·썩음·덜익음)가 올라간다.
+
+![LED 3색 점등과 LCD 대기·누적 통계 화면](docs/images/led_lcd.png)
+
+명령 한 줄로 기동한 뒤의 실행 로그다. 튜닝 상수, 고정 IP, AI-G SSH 자동 기동, TCP 연결, 그리고
+좌표·신뢰도가 붙은 검출 결과가 차례로 찍힌다.
+
+![D3-G SSH 환경에서의 실행 로그](docs/images/run_log.png)
 
 ## 빌드와 실행
 
