@@ -1,0 +1,178 @@
+unripe
+
+1 object is detected
+x1 y1 x2 y2 = 417.1022 239.3426 518.3564 374.1999 class:    3 score:  83.4975
+[Post-Process] min_xy( 417, 239) max_xy( 518, 374) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 411
+1 object is detected
+x1 y1 x2 y2 = 416.2738 235.9104 519.3159 371.5200 class:    3 score:  77.1355
+[Post-Process] min_xy( 416, 236) max_xy( 519, 372) class: 3 score: 77
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 797
+1 object is detected
+x1 y1 x2 y2 = 415.8487 233.4488 520.2355 368.0566 class:    3 score:  83.4975
+[Post-Process] min_xy( 416, 233) max_xy( 520, 368) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 797
+1 object is detected
+x1 y1 x2 y2 = 416.0108 232.6711 519.3235 370.7825 class:    3 score:  77.1355
+[Post-Process] min_xy( 416, 233) max_xy( 519, 371) class: 3 score: 77
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 411
+1 object is detected
+x1 y1 x2 y2 = 416.4903 237.5098 518.8742 370.6073 class:    3 score:  83.4975
+[Post-Process] min_xy( 416, 238) max_xy( 519, 371) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 797
+1 object is detected
+x1 y1 x2 y2 = 415.0510 237.5102 517.9546 373.5332 class:    3 score:  77.1355
+[Post-Process] min_xy( 415, 238) max_xy( 518, 374) class: 3 score: 77
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 797
+1 object is detected
+x1 y1 x2 y2 = 416.3036 239.9461 517.0240 376.7932 class:    3 score:  83.4975
+[Post-Process] min_xy( 416, 240) max_xy( 517, 377) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 797
+1 object is detected
+x1 y1 x2 y2 = 417.0528 243.9508 516.4188 376.7539 class:    3 score:  83.4975
+[Post-Process] min_xy( 417, 244) max_xy( 516, 377) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 411
+1 object is detected
+x1 y1 x2 y2 = 417.0276 241.7499 516.4202 376.2251 class:    3 score:  83.4975
+[Post-Process] min_xy( 417, 242) max_xy( 516, 376) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 411
+1 object is detected
+x1 y1 x2 y2 = 416.9349 241.8012 516.3714 376.4193 class:    3 score:  83.4975
+[Post-Process] min_xy( 417, 242) max_xy( 516, 376) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 411
+1 object is detected
+x1 y1 x2 y2 = 413.3840 246.1099 513.7934 379.3466 class:    3 score:  83.4975
+[Post-Process] min_xy( 413, 246) max_xy( 514, 379) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 797
+2 object is detected
+x1 y1 x2 y2 = 414.9086 247.0182 514.8890 379.4497 class:    3 score:  83.4975
+x1 y1 x2 y2 = 379.3424   0.5480 458.2319  66.1307 class:    4 score:  59.9967
+[Post-Process] min_xy( 415, 247) max_xy( 515, 379) class: 3 score: 83
+[Post-Process] min_xy( 379,   1) max_xy( 458,  66) class: 4 score: 60
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 797
+1 object is detected
+x1 y1 x2 y2 = 412.0538 248.2421 513.2092 380.4716 class:    3 score:  83.4975
+[Post-Process] min_xy( 412, 248) max_xy( 513, 380) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 908
+2 object is detected
+x1 y1 x2 y2 = 412.1414 249.0630 514.9404 382.1274 class:    3 score:  77.1355
+x1 y1 x2 y2 = 382.6803  -0.6037 457.5762  71.5108 class:    4 score:  69.2248
+[Post-Process] min_xy( 412, 249) max_xy( 515, 382) class: 3 score: 77
+[Post-Process] min_xy( 383,   0) max_xy( 458,  72) class: 4 score: 69
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 908
+1 object is detected
+x1 y1 x2 y2 = 412.3373 248.2437 514.8981 380.4843 class:    3 score:  83.4975
+[Post-Process] min_xy( 412, 248) max_xy( 515, 380) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[INFO] [getCpuUsage] Cpu usage 1 : 14.583333%
+[INFO] [getCpuUsage] Cpu usage 2 : 1.960784%
+[INFO] [getCpuUsage] Cpu usage 3 : 0.000000%
+[INFO] [getCpuUsage] Cpu usage 4 : 0.000000%
+[INFO] [getCpuUsage] cpu usage : 5% / size : 11
+[INFO] [getMemoryUsage] MemTotal : 1400132
+[INFO] [getMemoryUsage] MemFree : 882480
+[INFO] [getMemoryUsage] mem usage : 37%
+[Post-Process] class[0] : 797
+1 object is detected
+x1 y1 x2 y2 = 416.3199 245.1140 514.8895 377.9716 class:    3 score:  83.4975
+[Post-Process] min_xy( 416, 245) max_xy( 515, 378) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 747
+1 object is detected
+x1 y1 x2 y2 = 417.3740 242.8978 516.8127 373.8937 class:    3 score:  83.4975
+[Post-Process] min_xy( 417, 243) max_xy( 517, 374) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 442
+1 object is detected
+x1 y1 x2 y2 = 417.0634 246.0410 518.1539 378.3972 class:    3 score:  83.4975
+[Post-Process] min_xy( 417, 246) max_xy( 518, 378) class: 3 score: 83
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 525
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 525
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 2
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 450
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 450
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 999
+1 object is detected
+x1 y1 x2 y2 = 383.8582   0.5793 462.8457  66.6604 class:    4 score:  59.9967
+[Post-Process] min_xy( 384,   1) max_xy( 463,  67) class: 4 score: 60
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 622
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 576
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 576
+1 object is detected
+x1 y1 x2 y2 = 384.4516  -0.0461 463.4271  67.3198 class:    4 score:  77.1355
+[Post-Process] min_xy( 384,   0) max_xy( 463,  67) class: 4 score: 77
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 576
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 576
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 802
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[INFO] [getCpuUsage] Cpu usage 1 : 10.638298%
+[INFO] [getCpuUsage] Cpu usage 2 : 0.000000%
+[INFO] [getCpuUsage] Cpu usage 3 : 2.000000%
+[INFO] [getCpuUsage] Cpu usage 4 : 2.000000%
+[INFO] [getCpuUsage] cpu usage : 4% / size : 11
+[INFO] [getMemoryUsage] MemTotal : 1400132
+[INFO] [getMemoryUsage] MemFree : 882732
+[INFO] [getMemoryUsage] mem usage : 37%
+[Post-Process] class[0] : 576
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 421
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 576
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 576
+1 object is detected
+x1 y1 x2 y2 = 381.2009  -0.0060 464.6622  69.0577 class:    4 score:  69.2248
+[Post-Process] min_xy( 381,   0) max_xy( 465,  69) class: 4 score: 69
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 576
+1 object is detected
+x1 y1 x2 y2 = 379.0313  -0.0062 465.9197  70.7973 class:    4 score:  69.2248
+[Post-Process] min_xy( 379,   0) max_xy( 466,  71) class: 4 score: 69
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 576
+1 object is detected
+x1 y1 x2 y2 = 378.6931   0.5802 465.3727  68.0391 class:    4 score:  59.9967
+[Post-Process] min_xy( 379,   1) max_xy( 465,  68) class: 4 score: 60
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 576
+1 object is detected
+x1 y1 x2 y2 = 376.6426  -0.0043 465.2670  70.6709 class:    4 score:  77.1355

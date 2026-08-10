@@ -1,0 +1,295 @@
+fresh
+1 object is detected
+x1 y1 x2 y2 = 276.2617 156.9038 369.8422 315.4648 class:    2 score:  77.1355
+[Post-Process] min_xy( 276, 157) max_xy( 370, 315) class: 2 score: 77
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+1 object is detected
+x1 y1 x2 y2 = 278.7750 151.0685 398.7421 313.0069 class:    2 score:  69.2248
+[Post-Process] min_xy( 279, 151) max_xy( 399, 313) class: 2 score: 69
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+1 object is detected
+x1 y1 x2 y2 = 300.3700 135.0376 412.4429 304.8060 class:    4 score:  59.9967
+[Post-Process] min_xy( 300, 135) max_xy( 412, 305) class: 4 score: 60
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 617
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+1 object is detected
+x1 y1 x2 y2 = 304.0236 120.9311 410.5312 287.0346 class:    4 score:  59.9967
+[Post-Process] min_xy( 304, 121) max_xy( 411, 287) class: 4 score: 60
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 421
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 549
+1 object is detected
+x1 y1 x2 y2 = 304.4983 138.1684 400.0439 296.4062 class:    2 score:  77.1355
+[Post-Process] min_xy( 304, 138) max_xy( 400, 296) class: 2 score: 77
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 421
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 876
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 700
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 700
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+1 object is detected
+x1 y1 x2 y2 = 291.0431 163.9227 385.3222 318.1754 class:    2 score:  59.9967
+[Post-Process] min_xy( 291, 164) max_xy( 385, 318) class: 2 score: 60
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 435
+1 object is detected
+x1 y1 x2 y2 = 204.0538 583.9481 309.8830 638.8453 class:    4 score:  77.1355
+[Post-Process] min_xy( 204, 584) max_xy( 310, 639) class: 4 score: 77
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 421
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 421
+[INFO] [getCpuUsage] Cpu usage 1 : 2.083333%
+[INFO] [getCpuUsage] Cpu usage 2 : 17.307692%
+[INFO] [getCpuUsage] Cpu usage 3 : 1.960784%
+[INFO] [getCpuUsage] Cpu usage 4 : 0.000000%
+[INFO] [getCpuUsage] cpu usage : 6% / size : 11
+[INFO] [getMemoryUsage] MemTotal : 1400132
+[INFO] [getMemoryUsage] MemFree : 881600
+[INFO] [getMemoryUsage] mem usage : 37%
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 883
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 907
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 58
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 669
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 669
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 644
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 672
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 669
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 669
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 669
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+[INFO] [getCpuUsage] Cpu usage 1 : 0.000000%
+[INFO] [getCpuUsage] Cpu usage 2 : 20.754717%
+[INFO] [getCpuUsage] Cpu usage 3 : 0.000000%
+[INFO] [getCpuUsage] Cpu usage 4 : 0.000000%
+[INFO] [getCpuUsage] cpu usage : 5% / size : 11
+[INFO] [getMemoryUsage] MemTotal : 1400132
+[INFO] [getMemoryUsage] MemFree : 881852
+[INFO] [getMemoryUsage] mem usage : 37%
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 818
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 644
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 974
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 669
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 904
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 669
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 644
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 818
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 794
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 2
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 2
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 2
+[INFO] [getCpuUsage] Cpu usage 1 : 0.000000%
+[INFO] [getCpuUsage] Cpu usage 2 : 19.607843%
+[INFO] [getCpuUsage] Cpu usage 3 : 2.000000%
+[INFO] [getCpuUsage] Cpu usage 4 : 0.000000%
+[INFO] [getCpuUsage] cpu usage : 5% / size : 11
+[INFO] [getMemoryUsage] MemTotal : 1400132
+[INFO] [getMemoryUsage] MemFree : 881852
+[INFO] [getMemoryUsage] mem usage : 37%
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 107
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 2
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 2
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 107
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 818
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 818
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 107
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 107
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 107
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 818
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+[INFO] [getCpuUsage] Cpu usage 1 : 3.921569%
+[INFO] [getCpuUsage] Cpu usage 2 : 14.285714%
+[INFO] [getCpuUsage] Cpu usage 3 : 0.000000%
+[INFO] [getCpuUsage] Cpu usage 4 : 3.921569%
+[INFO] [getCpuUsage] cpu usage : 5% / size : 11
+[INFO] [getMemoryUsage] MemTotal : 1400132
+[INFO] [getMemoryUsage] MemFree : 881596
+[INFO] [getMemoryUsage] mem usage : 37%
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 818
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 818
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 971
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 818
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+[INFO] [getCpuUsage] Cpu usage 1 : 2.000000%
+[INFO] [getCpuUsage] Cpu usage 2 : 10.638298%
+[INFO] [getCpuUsage] Cpu usage 3 : 0.000000%
+[INFO] [getCpuUsage] Cpu usage 4 : 0.000000%
+0 object is detected
+[INFO] [getCpuUsage] cpu usage : 3% / size : 11
+[INFO] [getMemoryUsage] MemTotal : 1400132
+[INFO] [getMemoryUsage] MemFree : 881596
+[INFO] [getMemoryUsage] mem usage : 37%
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 2
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 908
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 725
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 4
+0 object is detected
+[WARN] oneFrameBytes(0x24c00) != 0x12C000; nnWidth=224 nnHeight=224 format=RGB24
+[Post-Process] class[0] : 785

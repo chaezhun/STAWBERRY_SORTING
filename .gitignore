@@ -1,0 +1,24 @@
+# build output
+build/
+*.o
+*.a
+*.exe
+__pycache__/
+*.pyc
+
+# simulator and tool output
+*.vcd
+*.wlf
+*.jou
+*.log
+transcript
+work/
+xsim.dir/
+.Xil/
+
+# Vivado project scratch
+*.cache/
+*.hw/
+*.runs/
+*.sim/
+*.ip_user_files/
