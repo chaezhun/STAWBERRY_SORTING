@@ -1,190 +1,214 @@
 # Strawberry Sorting System
 
-Strawberries move down a conveyor. A camera and an NPU classify each one as fresh,
-unripe or rotten, and a tilt plate at the end of the belt drops it to the correct
-side. Three embedded boards with different chips, different operating systems and
-different languages are chained into one line.
+> Three embedded boards — different chips, different operating systems, different languages —
+> tied into one sorting line.
 
-Advanced Project, Chung-Ang University, in cooperation with the Telechips fabless
-training programme. Two-person team, March to June 2026.
+A camera and an NPU classify strawberries moving along a conveyor as fresh, unripe or rotten,
+and a rotating plate at the end of the belt discharges each class. The communication chain —
+Ethernet TCP → IPC shared memory → CAN — was designed from scratch, and at two frames per
+second with frequent misdetections the line still actuates **exactly once per strawberry**.
+The whole line starts from a single SSH command; no UART cables remain.
 
 [한국어](README.ko.md)
 
 ---
 
-## Highlights
+## Contents
 
-| | |
-|---|---|
-| Boards | Three — 8 TOPS NPU (Yocto), dual-core controller (Linux + FreeRTOS), MCU actuator |
-| Chain | Ethernet TCP → IPC shared memory → CAN bus |
-| Reliability | **Exactly one actuation per piece of fruit** at 2 fps with frequent misdetection |
-| Operation | The whole line starts and stops from a single SSH command — no UART cables |
-| My part | Control and actuation boards, communication chain, system integration |
+- [Background](#background)
+- [System](#system)
+- [Design](#design)
+- [Repository structure](#repository-structure)
+- [Results](#results)
+- [Build and run](#build-and-run)
+- [Notes](#notes)
 
-## The chain
+## Background
+
+Each board owns a different layer. Recognition belongs on the NPU, decisions on Linux,
+actuation on a real-time MCU. The problem was that the three can only speak in different ways.
+
+AI-G runs a minimal Yocto image with no Python at all. D3-G has two cores running different
+operating systems that must communicate through shared memory. VCP-G only accepts CAN frames.
+Every hop uses a different mechanism, and making them mesh was most of the work.
+
+## System
 
 ```
- camera --> [ AI-G ]  --TCP over ethernet-->  [ D3-G A72 ]
-            YOLOv8n                            classify, decide when to act
-            on the NPU                                 |
-                                                       | IPC, shared memory
-                                                       v
-                                              [ D3-G R5, FreeRTOS ]
-                                                       |
-                                                       | CAN bus
-                                                       v
-                                              [ VCP-G ]  servo, LEDs, LCD
+ camera --> [ AI-G ]  --Ethernet TCP-->  [ D3-G A72 ]
+            YOLOv8n on                    classification gating, actuation timing
+            the NPU                               |
+                                                  | IPC shared memory
+                                                  v
+                                         [ D3-G R5, FreeRTOS ]
+                                                  |
+                                                  | CAN bus
+                                                  v
+                                         [ VCP-G ]  servo, LEDs, LCD
 ```
 
-| Board | Job | What it runs |
+| Board | Role | Configuration |
 |---|---|---|
-| AI-G | recognition | camera plus an 8 TOPS NPU, Yocto Linux, YOLOv8n |
-| D3-G | control | A72 under Linux decides; the R5 under FreeRTOS bridges shared memory to CAN |
-| VCP-G | actuation | TCC70xx MCU driving the servo, three LEDs and an LCD |
+| AI-G | Recognition | camera + NPU (8 TOPS), Yocto Linux, YOLOv8n |
+| D3-G | Control | A72 (Linux) decides, R5 (FreeRTOS) relays shared memory onto CAN |
+| VCP-G | Actuation | TCC70xx MCU, servo, three-colour LEDs, LCD |
 
-Every link uses a different mechanism, and getting them to mesh was most of the work.
-The AI board has no Python at all — it is a minimal Yocto image — so the result
-sender is written in `sh` with `awk` and `nc`. Between the two cores of the D3-G the
-path is `/dev/tcc_ipc_micom`. From there to the actuator board it is CAN, with one
-byte of angle for the servo, two bytes for the LEDs and four for the LCD counters.
+With no Python on AI-G, result transmission is written in `sh` + `awk` + `nc`. The two D3-G
+cores talk over `/dev/tcc_ipc_micom`, and from there to the actuation board it is CAN — one
+byte for the servo angle, two for the LEDs, four for the LCD counter.
 
-## One action per strawberry
+### Housing
 
-The camera delivers about two frames per second and the model misfires often enough
-to matter. Acting directly on a detection means the plate fires several times for one
-piece of fruit, or fires at a coordinate that jumped for a single frame. Five stages
-sit between a detection and the servo:
+| Exterior | Interior |
+|---|---|
+| ![Housing front](3d-model/preview/preview_front.png) | ![Housing interior](3d-model/preview/preview_inside.png) |
+
+## Design
+
+### Exactly once per strawberry
+
+The camera runs at two frames per second and model misdetections are not negligible. Actuating
+on detection means the plate turns several times for one strawberry, or turns for nothing on a
+single frame of jittered coordinates. Five stages sit between detection and the servo.
 
 | Stage | Rule |
 |---|---|
-| confidence | ignore anything below 50% |
-| trigger box | both X and Y have to fall inside the plate's position |
-| debounce | three consecutive frames inside the box |
-| re-arm gap | the class has to be absent for 1.5 s before the next piece counts |
-| non-blocking servo | a trigger arriving mid-movement is dropped, not queued |
+| Confidence | ignore anything under 50% |
+| Trigger box | both X and Y must fall inside the plate region |
+| Debounce | three consecutive frames inside the box |
+| Re-arm gap | that class must disappear for 1.5 s before it counts as a new strawberry |
+| Non-blocking servo | triggers arriving mid-motion are dropped, not queued |
 
-The last one came out of a failure. With one plate, servo calls were serialised behind
-a lock — and over-triggering built a backlog of 1.3-second movements, so the plate
-kept turning over an empty belt long after the fruit had gone. Making the lock
-non-blocking removed the backlog rather than draining it.
+The last one came out of a failure. With a single plate, serialising servo calls behind a lock
+meant excess triggers accumulated as 1.3-second motions and the plate kept turning over empty
+belt long after the strawberry had passed. Making the lock non-blocking removed the backlog
+rather than draining it.
 
-## Three kinds of misdetection
+### Three kinds of misdetection
 
-The model validates at mAP50 around 0.99 and still misbehaves on a real belt. Each
-failure needed a different correction.
+A model with 0.99 validation mAP50 behaves differently over a real belt. The causes differ, so
+the fixes did too.
 
 | Problem | Cause | Fix |
 |---|---|---|
-| triggers early and too easily | the decision used only the Y coordinate | a 2D box on X and Y, so only the spot in front of the plate counts |
-| unripe over-detected | it has the most training data and is found on nearly every frame, so it triggers the moment it enters the box | a smaller box for unripe alone, with the entry edges pulled inward |
-| fresh fruit rejected | fresh is occasionally read as rotten or unripe | a single fresh detection blocks the other classes for two seconds |
+| Detection too early and too twitchy | decision made on the Y coordinate alone | 2D box using both X and Y — accepted only right before the plate |
+| Over-detection of unripe | most heavily represented in training, so detected every frame and triggering on box entry | a smaller box specific to unripe, with the entry edge moved inward |
+| Fresh misclassified | fresh occasionally detected as rotten or unripe | one frame of fresh blocks other classes for 2 s |
 
-The last fix rests on an observation about the *direction* of the errors. Fresh being
-called defective is common; defective being called fresh is rare. So a fresh label is
-the trustworthy one, and the logic is deliberately asymmetric: fresh acts on one
-frame while rotten and unripe need three, which means fresh always wins the race.
+That last fix came from watching the *direction* of the errors. Fresh being called defective
+was common; defective being called fresh was rare. So the fresh signal is the trustworthy one,
+and the logic is deliberately asymmetric: fresh fires on one frame while rotten and unripe
+require three, so fresh always wins the race.
 
-## Running it without cables
+### Cable-free operation
 
-Originally each board needed its own UART cable and its own typed commands. The
-controller now starts recognition on the AI board over SSH and shuts everything down
-after thirty seconds with no detections, so the whole line is one command.
+Originally every board needed its own UART and its own commands. Now the control code starts
+recognition on AI-G over SSH and tears everything down after 30 seconds with no detection. One
+command does it.
 
-Getting there also meant making the AI board's IP survive a reboot as a systemd
-service, setting up a passwordless key from one board to the other, stopping
-NetworkManager from wiping the static address with `nmcli managed no`, and retesting
-the assumption that the R5 needed a manual `log on` — a cold power cycle showed it did
-not, which removed the last UART cable. The system boots cold and runs over WiFi.
+Along the way: AI-G's IP was made persistent across reboots with a systemd service,
+passwordless SSH keys were set up between boards, and NetworkManager was stopped from wiping
+the static IP with `nmcli managed no`. The assumption that R5 needed a manual `log on` was
+re-tested with a cold power cycle and turned out to be false — that is how the last UART cable
+went away. The line now runs from cold boot over WiFi alone.
 
-## Tuning without reflashing
+### Tuning without reflashing
 
-Rebuilding the actuator firmware means a WSL build, entering boot mode, FWDN, and a
-reboot. Every parameter that gets adjusted on the rig therefore lives in the Python
-controller instead: the three plate angles, the hold time, the trigger box
-coordinates, the debounce count and the re-arm gap. Changing any of them is a file
-copy and a restart. Moving the camera meant re-measuring the box more than once, so
-this paid for itself.
+Reloading the actuation firmware means WSL build → boot mode → FWDN → reboot, every time. So
+everything tuned in the field lives in the Python controller instead: the three rotation angles,
+hold time, trigger box coordinates, debounce frame count, re-arm gap. Changing one means copying
+a file and rerunning. The camera moved more than once and the boxes had to be re-measured, so
+this structure paid for itself.
+
+### What the hardware taught
+
+The plate started on an MG90S, which turned out to be a continuous-rotation servo — speed is
+controllable, position is not. Timing the angle drifted every run, so it was replaced with a
+positional SG90 and the target angle is now sent directly over CAN.
+
+The LCD lit its backlight but showed no characters, and an I2C scan returned 0x00 at every
+address. Attaching a scanner to both ports found nothing; the cause was wiring. It was connected
+to pins this board cannot route I2C on. Moving it to the proper header and matching the firmware
+port fixed it.
+
+During wireless operation the LEDs and CAN logs were fine but the motor would not turn. That
+isolated the CAN/R5/VCP path as healthy, leaving the servo wiring — insulating tape caught in a
+jumper joint.
+
+### 3D-printed parts
+
+All three parts were modelled in CadQuery with every dimension as a named constant, and printed
+on a Bambu X1-Carbon.
+
+| Rotation plate | Support |
+|---|---|
+| ![Rotation plate](3d-model/preview/preview_rotation_plate.png) | ![Support](3d-model/preview/preview_support.png) |
+
+- **Housing** 96.5 × 123.5 × 107.0 mm, three boards on three shelves, with power, port and
+  camera cutouts
+- **Rotation plate** 110 × 50 × 1.3 mm with side walls, press-fits directly onto the SG90 spline
+- **Support** holds the servo at 30 degrees to the ground so fresh strawberries roll through;
+  includes a servo pocket and a wiring channel
+
+The support was first modelled as a hollow shell, which produced a non-watertight solid the
+slicer rejected. It became a watertight solid hollowed out by infill instead.
 
 ## Repository structure
 
 ```
 BOARD_CODE/d3-g/
-  fruit_controller.py        TCP server, classification gate, IPC dispatch
-  IPC_Example.py             IPC send CLI, A72 to R5
-  IPC_Library.py             IPC packet construction and CRC16
+  fruit_controller.py        TCP server, classification gating, IPC transmission
+  IPC_Example.py             IPC send CLI (A72 -> R5)
+  IPC_Library.py             IPC packet construction + CRC16
 BOARD_CODE/ai-g/
-  ai_result_sender.sh        parses tcnnapp output and streams it over TCP
-  NPU_PIPELINE.md            training, conversion and deployment, by Kang Yohan
-  sample_logs/               captured detection output for each class
+  ai_result_sender.sh        parses tcnnapp output -> TCP
+  NPU_PIPELINE.md            training, conversion and deployment end to end
+  sample_logs/               real detection logs per class
 BOARD_CODE/vcp-g/
-  app.can.demo/              CAN receive and dispatch to servo, LEDs and LCD
+  app.can.demo/              CAN receive dispatch -> servo, LEDs, LCD
   app.base/                  entry point
-  drivers/                   PWM, I2C and LCD, GPIO, CAN
-  board_pinmap.md            GPIO names against physical connector pins
+  drivers/                   PWM, I2C/LCD, GPIO, CAN
+  board_pinmap.md            GPIO names to physical connector pins
 3d-model/
-  model_file/                exported STEP and STL
-  preview/                   rendered views of the three parts
+  model_file/                STEP and STL exports
+  preview/                   renders of the three parts
 docs/
-  final_presentation_ko.pdf  final presentation, in Korean
-  final_report_ko.pdf        final report, in Korean
+  final_presentation_ko.pdf  final presentation
+  final_report_ko.pdf        final report
 ```
 
-## Hardware notes
+## Results
 
-The plate started on an MG90S, which turns out to be a continuous-rotation servo:
-speed is controllable but position is not, so timing the angle drifted every run. A
-position-controlled SG90 replaced it and the CAN frame now carries the target angle
-directly.
-
-The LCD came up with a backlight but no characters, and an I2C scan returned 0x00 on
-every address. Adding a scanner across both ports found nothing either, and the
-actual cause was the wiring: it sat on pins that cannot be routed to I2C on this
-board. Moving it to the proper header and matching the firmware port fixed it.
-
-During wireless operation the motor once stopped responding while the LEDs and the
-CAN log stayed healthy, which isolated the fault to the servo wiring — insulating
-tape caught in a jumper joint.
-
-## 3D printed parts
-
-All three parts were modelled parametrically in CadQuery, with every dimension a
-named constant, and printed on a Bambu X1-Carbon. The exported STEP and STL are here
-along with a render of each part.
-
-- **Enclosure**, 96.5 x 123.5 x 107.0 mm, holding the three boards on stacked shelves
-  with openings for power, connectors and the camera
-- **Tilt plate**, 110 x 50 x 1.3 mm with end walls, press-fitting onto the servo spline
-- **Support wedge**, holding the servo at 30 degrees so fresh fruit rolls straight
-  through, with a servo pocket and a cable route
-
-The support was first modelled as a hollow shell, which produced a non-watertight
-solid that the slicer rejected. It is now a watertight solid hollowed by infill.
+| | |
+|---|---|
+| Boards | three — 8 TOPS NPU (Yocto), dual-core control (Linux + FreeRTOS), MCU actuation |
+| Communication | Ethernet TCP → IPC shared memory → CAN bus |
+| Reliability | **exactly one actuation per strawberry** at 2 fps with frequent misdetections |
+| Operation | whole line starts and stops from one SSH command; no UART cables |
 
 ## Build and run
 
-**Prerequisites** — the Telechips TOPST SDK for the VCP-G firmware (built under
-WSL), Python 3 on the D3-G board, and a trained model deployed on the AI-G board.
+**Prerequisites** — the Telechips TOPST SDK for building VCP-G firmware (built under WSL),
+Python 3 on D3-G, and the trained model deployed on AI-G.
 
-1. **Actuator board** — build `BOARD_CODE/vcp-g/` with the SDK and flash it over
-   FWDN. This only needs redoing when the pin map or CAN format changes; all
-   tuning parameters live on the controller instead.
-2. **AI board** — place the three model files in
-   `/usr/share/strawberry_shifted_v2_quantized/` and copy `ai_result_sender.sh`
-   to `/home/root/`. See [`NPU_PIPELINE.md`](BOARD_CODE/ai-g/NPU_PIPELINE.md) for
-   how the model is converted and deployed.
-3. **Controller** — run `sudo python3 fruit_controller.py` on the D3-G. With
-   `ORCHESTRATE = True` it fixes its own IP, starts recognition on the AI board
-   over SSH, and shuts everything down after 30 seconds of silence.
+1. **Actuation board** — build `BOARD_CODE/vcp-g/` with the SDK and flash it with FWDN. Only
+   needed again when the pin map or CAN format changes; all tuning parameters live in the
+   controller.
+2. **Recognition board** — place the three model files in
+   `/usr/share/strawberry_shifted_v2_quantized/` and copy `ai_result_sender.sh` to `/home/root/`.
+   The conversion and deployment process is in
+   [`NPU_PIPELINE.md`](BOARD_CODE/ai-g/NPU_PIPELINE.md).
+3. **Control board** — run `sudo python3 fruit_controller.py` on D3-G. With
+   `ORCHESTRATE = True` it fixes its own IP, starts recognition on AI-G over SSH, and tears
+   everything down after 30 seconds with no detection.
 
-One-time setup: a static IP on the AI board and a passwordless SSH key from the
-controller to it.
+One-time setup: a static IP on AI-G, and a passwordless SSH key from the control board to AI-G.
 
-## Credits
+## Notes
 
-Chae Jihun: control and actuation boards, the communication chain, system
-integration, on-site tuning and the final documents.
-Kang Yohan: dataset, YOLOv8n training and the NPU deployment pipeline.
-The 3D models were done jointly.
+**My part** — this was a two-person project. I worked on the control and actuation boards, the
+communication chain, system integration, field tuning and the final documentation. My teammate
+handled the dataset, YOLOv8n training and the NPU deployment pipeline (including
+`NPU_PIPELINE.md`). The 3D modelling was joint work.
 
-The Telechips course materials and the dataset images are not included here.
+**Not included** — course materials and dataset images are distributed content and are excluded.
