@@ -57,10 +57,6 @@ LCD 카운터는 4바이트로 포맷을 정했다.
 
 ### 하우징
 
-```
-    3층 선반에 보드 3개를 수납. 전원·포트·카메라 구멍 포함.
-```
-
 | 외관 | 내부 |
 |---|---|
 | ![하우징 정면](3d-model/preview/preview_front.png) | ![하우징 내부](3d-model/preview/preview_inside.png) |
