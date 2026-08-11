@@ -112,6 +112,19 @@ was common; defective being called fresh was rare. So the fresh signal is the tr
 and the logic is deliberately asymmetric: fresh fires on one frame while rotten and unripe
 require three, so fresh always wins the race.
 
+### The class that never appeared on the board
+
+Every class was detected on the PC simulator, but class index 0 never came out on the board. My
+teammate isolated it by comparing against the simulator, verifying MD5 sums and reading the raw
+logs: tcnnapp's post-processing treats index 0 as background and drops it. The workaround was to
+shift every training label up by one and leave class 0 empty
+([`NPU_PIPELINE.md`](BOARD_CODE/ai-g/NPU_PIPELINE.md) §7).
+
+That leaves the board emitting indices that no longer match the project's. The awk in the
+result-sender script maps them back — **2 to fresh, 3 to unripe, 4 to rotten**, everything else
+discarded — so the controller receives the original numbering. That is why the model directory
+is named `strawberry_shifted_v2_quantized`.
+
 ### Cable-free operation
 
 Originally every board needed its own UART and its own commands. Now the control code starts
